@@ -1,0 +1,63 @@
+# security
+security:
+  basic:
+    enabled: true
+  user:
+    name: ja0ck5
+    password: jack123
+---
+server:
+  port: 8761
+spring:
+  profiles: eureka-peer-1
+  application:
+    name: eureka-peer-1
+eureka:
+  client:
+    # EurekaDiscoveryClientConfiguration 源码中可以找到配置。ide 没有提示
+    healthcheck:
+      enabled: true
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8762/eureka,http://ja0ck5:jack123@localhost:8763/eureka
+  instance:
+    hostname: eureka-peer-1
+    #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+---
+server:
+  port: 8762
+spring:
+  profiles: eureka-peer-2
+  application:
+    name: eureka-peer-2
+eureka:
+  client:
+    # EurekaDiscoveryClientConfiguration 源码中可以找到配置。ide 没有提示
+    healthcheck:
+      enabled: true
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka,http://ja0ck5:jack123@localhost:8763/eureka
+  instance:
+    hostname: eureka-peer-2
+    #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+---
+server:
+  port: 8763
+spring:
+  profiles: eureka-peer-3
+  application:
+    name: eureka-peer-3
+eureka:
+  client:
+    # EurekaDiscoveryClientConfiguration 源码中可以找到配置。ide 没有提示
+    healthcheck:
+      enabled: true
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka,http://ja0ck5:jack123@localhost:8762/eureka
+  instance:
+    hostname: eureka-peer-3
+
+
+

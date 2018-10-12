@@ -1,0 +1,22 @@
+
+server:
+  port: 8089
+eureka:
+  client:
+    # EurekaDiscoveryClientConfiguration 源码中可以找到配置。ide 没有提示
+    healthcheck:
+      enabled: true
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+spring:
+  application:
+    name: spring-cloud-micro-gateway-zuul
+zuul:
+  ignoredServices: '*' # 禁用所有的反向代理/ 或者 {serviceName}
+  routes:
+    spring-cloud-micro-provider-user: /user/**
+

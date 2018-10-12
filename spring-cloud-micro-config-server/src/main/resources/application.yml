@@ -1,0 +1,43 @@
+server:
+  port: 8094
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+
+spring:
+  application:
+      name: spring-cloud-micro-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Ja0ck5/spring-cloud-custom-config
+          search-paths:
+            - foo
+            - bar
+          clone-on-start: false
+
+# mq
+rocketmq:
+  producer:
+    namesrvAddr: 14.17.106.114:9876
+    groupName: test-allstar-message
+    isOnOff: on
+    # 消息最大长度 默认1024*4(4M)
+    maxMessageSize: 4096
+    sendMsgTimeout: 3000
+    retryTimesWhenSendFailed: 2
+  consumer:
+    namesrvAddr: 14.17.106.114:9876
+    groupName: test-allstar-message
+    topics: allstar-message~*
+    consumeThreadMin: 20
+    consumeThreadMax: 128
+    consumeMessageBatchMaxSize: 1

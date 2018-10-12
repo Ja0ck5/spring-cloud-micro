@@ -1,0 +1,24 @@
+server:
+  port: 8084
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+spring:
+  application:
+    name: spring-cloud-micro-consumer-movie-ribbon
+
+# ribbon first word is a service name
+spring-cloud-micro-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule # 根据响应时间加权
+#    listOfServers: localhost:8080 # 指定调用哪个服务 e.g.: example.com,google.com
+## ribbon 禁用 eureka
+#ribbon:
+#    eureka:
+#      enabled: false

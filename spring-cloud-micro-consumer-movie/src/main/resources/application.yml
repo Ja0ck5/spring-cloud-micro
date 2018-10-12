@@ -1,0 +1,19 @@
+server:
+  port: 8082
+user:
+  userService:
+    path: http://localhost:8080/simple/
+
+spring:
+  application:
+    name: spring-cloud-micro-consumer-movie
+
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}} #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+

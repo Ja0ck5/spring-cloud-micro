@@ -1,0 +1,38 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: spring-cloud-micro-turbine
+logging:
+  level:
+    root: info
+    com.ja0ck5: debug
+    com.netflix.turbine.monitor: debug
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    lease-renewal-interval-in-seconds: 5
+    appname: spring-cloud-micro-turbine
+
+# turbine
+turbine:
+  aggregator:
+# 配置单个集群监控
+#    clusterConfig: SPRING-CLOUD-MICRO-CONSUMER-MOVIE-FEIGN
+#  appConfig: spring-cloud-micro-consumer-movie-feign
+#
+# 2
+#turbine.instanceUrlSuffix.SPRING-CLOUD-MICRO-CONSUMER-MOVIE-RIBBON-HYSTRIX: /ribbon/hystrix.stream
+
+# 3
+
+
+# 配置多个集群监控
+   clusterConfig: default
+  appConfig: spring-cloud-micro-consumer-movie-feign,spring-cloud-micro-consumer-movie-ribbon-hystrix
+  cluster-name-expression: "'default'"

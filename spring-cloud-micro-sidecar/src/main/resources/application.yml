@@ -1,0 +1,19 @@
+
+server:
+  port: 8092
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+spring:
+  application:
+    name: spring-cloud-micro-sidecar
+
+sidecar:
+  port: 8000
+  health-uri: http://localhost:8000/health.json # 异构服务的约定的地址 微服务的健康检查URL

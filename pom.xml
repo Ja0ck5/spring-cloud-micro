@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ja0ck5.cloud</groupId>
+    <artifactId>spring-cloud-micro-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>spring-cloud-micro-parent</name>
+
+    <modules>
+        <module>spring-cloud-micro-consumer-movie</module>
+        <module>spring-cloud-micro-provider-user</module>
+        <module>spring-cloud-micro-discovery-eureka</module>
+        <module>spring-cloud-micro-consumer-movie-ribbon</module>
+        <module>spring-cloud-micro-consumer-movie-feign</module>
+        <module>spring-cloud-micro-discovery-eureka-ha</module>
+        <module>spring-cloud-micro-consumer-movie-ribbon-hystrix</module>
+        <module>spring-cloud-micro-hystrix-dashboard</module>
+        <module>spring-cloud-micro-turbine</module>
+        <module>spring-cloud-micro-gateway-zuul</module>
+        <module>spring-cloud-micro-gateway-zuul-filter</module>
+        <module>spring-cloud-micro-uploader</module>
+        <module>spring-cloud-micro-sidecar</module>
+        <module>spring-cloud-micro-config-server</module>
+        <module>spring-cloud-micro-config-client</module>
+        <module>spring-cloud-micro-config-server-security</module>
+        <module>spring-cloud-micro-push-server</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR4</version>
+                <!--<version>Camden.SR7</version>-->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.0</version>
+                <optional>true</optional>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>4.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-common</artifactId>
+                <version>4.3.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

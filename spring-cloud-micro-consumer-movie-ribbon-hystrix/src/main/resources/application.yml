@@ -1,0 +1,28 @@
+
+server:
+  port: 8086
+  context-path: /ribbon # turbine 2
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    metadata-map:
+      management.port: 8186 # turbine 3
+#    home-page-url-path: /ribbon # turbine 2
+    #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+spring:
+  application:
+    name: spring-cloud-micro-consumer-movie-ribbon-hystrix
+
+# ribbon first word is a service name
+spring-cloud-micro-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+management:
+  port: 8186 # turbine 3
+ # ????????????
+#    listOfServers: localhost:8080 # ?????????????? e.g.: example.com,google.com

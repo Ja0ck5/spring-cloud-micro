@@ -1,0 +1,21 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: spring-cloud-micro-uploader
+  http:
+    multipart:
+      max-file-size: 1Mb
+      max-request-size: 2Mb
+logging:
+  level:
+    root: info
+    com.ja0ck5: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    lease-renewal-interval-in-seconds: 5

@@ -1,0 +1,44 @@
+server:
+  port: 8085
+user:
+  userService:
+    path: http://localhost:8080/simple/
+
+spring:
+  application:
+    name: spring-cloud-micro-consumer-movie-feign
+
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+#    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+      #${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+# ribbon first word is a service name
+#spring-cloud-micro-provider-user:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+
+# feign
+feign:
+  compression:
+    request:
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+      enabled: true
+    response:
+       enabled: true
+  hystrix:
+    enabled: true
+
+logging:
+  level:
+    com.ja0ck5.cloud.service.UserFeignClient: debug
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+

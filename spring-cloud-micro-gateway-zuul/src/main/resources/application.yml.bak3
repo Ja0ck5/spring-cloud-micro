@@ -1,0 +1,31 @@
+
+server:
+  port: 8089
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+spring:
+  application:
+    name: spring-cloud-micro-gateway-zuul
+
+zuul:
+  routes:
+    users:
+      path: /myusers/**
+#      url: http://172.16.11.159:8089/spring-cloud-micro-provider-user/
+      serviceId: spring-cloud-micro-provider-user
+#These simple url-routes don’t get executed as a HystrixCommand nor can you loadbalance multiple URLs with Ribbon. To achieve this, specify a service-route and configure a Ribbon client for the serviceId (this currently requires disabling Eureka support in Ribbon: see above for more information), e.g.
+ribbon:
+  eureka:
+    enabled: false
+
+spring-cloud-micro-provider-user:
+  ribbon:
+    listOfServers: http://172.16.11.159:8089/,http://172.16.11.159:8090/

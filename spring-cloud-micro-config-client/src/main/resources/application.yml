@@ -1,0 +1,22 @@
+
+server:
+  port: 8095
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://ja0ck5:jack123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+
+#profile: dev
+
+security:
+   oauth2:
+     client:
+       client-id: ja0ck5
+       client-secret: ja0ck5
+

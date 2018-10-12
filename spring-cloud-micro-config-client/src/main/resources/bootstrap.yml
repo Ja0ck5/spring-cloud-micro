@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-cloud-micro-config-client
+  cloud:
+    config:
+#      uri: http://localhost:8094
+      uri: http://ja0ck5:jack123@localhost:8094
+      profile: test # dev
+      label: master
+      # 当 config server 的后端存储为 git ，则默认为 master
+      username: ja0ck5
+      password: jack123
+#      discovery:
+#        enabled: true # 让客户端也具备服务发现的能力，以备发现 config server
+#        service-id: SPRING-CLOUD-MICRO-CONFIG-SERVER # config server
